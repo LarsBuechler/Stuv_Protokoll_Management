@@ -9,8 +9,8 @@ export default function Home() {
 
       <Navbar />
 
-      <h1 className='text-center py-40 text-3xl'>Home Page</h1>
-
+      <h1 className='text-center py-60 text-3xl'>Home Page</h1>
+    
       <Footer />
       
     </main>

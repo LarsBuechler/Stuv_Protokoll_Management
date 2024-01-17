@@ -23,22 +23,22 @@ const Navbar = () => {
             <a href='/' className="btn btn-ghost text-3xl font-bold">Stuv Generator</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal dropdown-content mt-3 flex gap-10">
-            <li className='text-lg font-semibold'><a href='/DocumentOverview'>Document Overview</a></li>
+            <ul className="menu menu-horizontal dropdown-content mt-3 flex gap-4">
+            <li className='text-base font-semibold'><a href='/DocumentOverview'>Document Overview</a></li>
             <li>
                 <details>
-                <summary className='text-lg font-semibold'>AI Overview</summary>
+                <summary className='text-base font-semibold'>AI Overview</summary>
                 <ul className="p-1">
-                    <li className='text-base font-medium'><a href='https://mlflow.org' target='blank'>MLFlow</a></li>
-                    <li className='text-base font-medium'><a href='https://www.zenml.io' target='blank'>ZenML</a></li>
+                    <li className='text-sm font-medium'><a href='https://mlflow.org' target='blank'>MLFlow</a></li>
+                    <li className='text-sm font-medium'><a href='https://www.zenml.io' target='blank'>ZenML</a></li>
                 </ul>
                 </details>
             </li>
-            <li className=' text-lg font-semibold'><a href='/UploadOverview'>Upload Overview</a></li>
+            <li className=' text-base font-semibold'><a href='/UploadOverview'>Upload Overview</a></li>
             </ul>
         </div>
         <div className="navbar-end">
-            <a className='text-lg font-semibold btn' href='https://readthedocs.org/' target='blank'>Read the Docs</a>
+            <a className='text-base font-semibold btn' href='https://readthedocs.org/' target='blank'>Read the Docs</a>
         </div>
     </div>
   )
