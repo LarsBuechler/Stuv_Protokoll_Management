@@ -19,18 +19,18 @@ const DocumentOverview = async () => {
     <div>
         <Navbar />
 
-        <div className='text-2xl ml-10'>Document Overview</div>
+        <div className='text-3xl ml-10 text-center text-bold text-neutral pt-10'>Document Overview</div>
 
         <div className=" overflow-x-auto my-20 mx-40">
           <table className="table table-xs table-pin-rows table-pin-cols">
             <thead>
-              <tr className='text-lg text-center'>
+              <tr className='text-lg text-center text-neutral'>
                 <td>ID</td>
                 <td>Name</td>
                 <td>E-Mail</td>
               </tr>
             </thead> 
-            <tbody className=''>
+            <tbody className='text-primary-content'>
               {comments.map(comment => <tr key={comment.id}>
                 <td>{comment.id}</td>
                 <td>{comment.name}</td>  

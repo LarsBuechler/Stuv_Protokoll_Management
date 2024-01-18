@@ -9,9 +9,11 @@ const UploadOverview = () => {
     <div>
         <Navbar />
         
-        <h1 className='text-center pt-20 pb-10 text-3xl'>Upload neuer Dateien</h1>
+        <h1 className='text-center pt-20 pb-10 text-3xl text-neutral'>Upload neuer Dateien</h1>
 
         <FileInput />
+
+        <div className='py-20'></div>
 
         <Footer />
     </div>
