@@ -2,6 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
+import Search from './components/Search/Search'
+import Output from './components/Output/Output'
+
 
 export default function Home() {
   return (
@@ -9,7 +12,9 @@ export default function Home() {
 
       <Navbar />
 
-      <h1 className='text-center py-60 text-3xl'>Home Page</h1>
+      <Search />
+
+      <Output />
     
       <Footer />
       
