@@ -3,7 +3,8 @@ import Navbar from '../components/Navbar/Navbar'
 import Footer from '../components/Footer/Footer'
 
 
-const page = () => {
+const Settings = () => {
+
   return (
     <div>
 
@@ -47,4 +48,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Settings

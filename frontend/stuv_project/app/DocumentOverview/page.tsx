@@ -43,7 +43,7 @@ const DocumentOverview = async () => {
 
         <div className="join flex items-center justify-center pb-20">
           <button className="join-item btn">«</button>
-          <button className="join-item btn">Page 2</button>
+          <button className="join-item btn">Page 1</button>
           <button className="join-item btn">»</button>
         </div>
 

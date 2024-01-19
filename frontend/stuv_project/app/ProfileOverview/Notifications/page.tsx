@@ -5,7 +5,7 @@ import Navbar from '@/app/components/Navbar/Navbar'
 
 
 
-const page = () => {
+const Notifications = () => {
 
     const [isChecked, setIsChecked] = useState(false);
     
@@ -140,4 +140,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Notifications

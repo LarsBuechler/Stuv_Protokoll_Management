@@ -3,7 +3,7 @@ import Navbar from '@/app/components/Navbar/Navbar'
 import Footer from '@/app/components/Footer/Footer'
 
 
-const page = () => {
+const Users = () => {
   return (
   <div>
 
@@ -47,4 +47,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Users
