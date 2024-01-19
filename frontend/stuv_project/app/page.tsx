@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import Search from './components/Search/Search'
@@ -11,6 +9,8 @@ export default function Home() {
     <main>
 
       <Navbar />
+
+      <div className='text-3xl ml-10 text-center text-bold text-neutral pt-10 pb-20'>Homepage</div>
 
       <Search />
 
