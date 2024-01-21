@@ -10,12 +10,12 @@ export default function Home() {
     
       <div className='flex flex-wrap'> 
 
-        <div>
+        <div className='relative z-50'>
           <Navbar />
         </div>
 
 
-        <div className='w-1/5 pr-4 overflow-y-auto'> 
+        <div className='w-1/5 pr-4 overflow-y-auto z-0'> 
           <Sidebar />
         </div>
 
