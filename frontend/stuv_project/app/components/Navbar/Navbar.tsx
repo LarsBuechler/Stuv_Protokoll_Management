@@ -1,26 +1,21 @@
+'use client';
 import React from 'react'
+import { useState } from 'react';
 
 
 const Navbar = () => {
+
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => {
+      setDropdownOpen(!isDropdownOpen);
+    };
+
   return (
-    <div className="navbar bg-base-100">
-        <div className="navbar-start">
-            <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-            </div>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-2 z-[1] p-2 shadow bg-base-100 rounded-box w-48 border-2 border-base-200">
-                <li><a href='/DocumentOverview'>Document Overview</a></li>
-                <li>
-                <div>AI Overview</div>
-                <ul className="p-2">
-                    <li><a href='https://mlflow.org' target='blank'>MLFlow</a></li>
-                    <li><a href='https://www.zenml.io' target='blank'>ZenML</a></li>
-                </ul>
-                </li>
-                <li><a href='/UploadOverview'>Upload Overview</a></li>
-            </ul>
-            </div>
+    <div className="navbar bg-base-100 pb-5">
+
+        
+        <div className="navbar-start ml-5 fixed">
             <a href='/' className="btn btn-ghost transform hover:scale-105 text-3xl font-bold">
                 <svg xmlns="http://www.w3.org/2000/svg" id="Ebene_2" data-name="Ebene 2" viewBox='0 0 545 545' height='100%'>
                     <g id="Ebene_1-2" data-name="Ebene 1">
@@ -29,29 +24,62 @@ const Navbar = () => {
                 </svg>
                 Generator</a>
         </div>
-        <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal p-4 dropdown-content mt-3 flex gap-4 ">
-            <li className='text-base font-semibold'><a className='hover:scale-105' href='/DocumentOverview'>Document Overview</a></li>
-            <li>
-                <details>
-                <summary className='text-base font-semibold hover:scale-105'>AI Overview</summary>
-                <ul className="p-1">
-                    <li className='text-sm font-medium'><a href='https://mlflow.org' target='blank'>MLFlow</a></li>
-                    <li className='text-sm font-medium'><a href='https://www.bentoml.com' target='blank'>BentoML</a></li>
-                    <li className='text-sm font-medium'><a href='https://www.zenml.io' target='blank'>ZenML</a></li>
-                </ul>
-                </details>
-            </li>
-            <li className=' text-base font-semibold'><a className='hover:scale-105' href='/UploadOverview'>Upload Overview</a></li>
-            <li className=' text-base font-semibold'><a className='hover:scale-105' href='https://readthedocs.org/' target='blank'>Read the Docs</a></li>    
-            </ul>
-        </div>
-        <div className="navbar-end mr-10">
-            <div className="avatar online">
-                <div className="w-24 rounded-full transform hover:scale-105">
-                    <a href='/ProfileOverview'><img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"/></a>
+
+
+        <div className='navbar-center'>
+            <div className='mx-80 hover:scale-105 pl-40'>
+                <div className="relative flex items-center w-full h-10 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
+                    <div className="grid place-items-center h-full w-20 text-gray-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <input className="peer h-full w-full outline-none text-sm text-gray-700 pr-2" type="text" id="search" placeholder="Search something.." /> 
                 </div>
             </div>
+        </div>
+
+
+        <div className="navbar-end mr-5 pl-20">
+            
+            <div className='relative'>
+                <ul className="menu menu-horizontal p-4 dropdown-content flex gap-4 z-50">
+                    <li>
+                        <details>
+                        <summary className='text-sm font-semibold hover:scale-105'>Theme</summary>
+                        <ul className="p-1">
+                            <li className='text-sm font-medium'><button>Light</button></li>
+                            <li className='text-sm font-medium'><button>Dark</button></li>
+                            <li className='text-sm font-medium'><button>Mixed</button></li>
+                        </ul>
+                        </details>
+                    </li>
+                </ul>
+            </div>
+
+            <div className="relative inline-block">
+                <button id="dropdownUserAvatarButton" onClick={toggleDropdown} className="flex hover:scale-105 bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" type="button">
+                    <img className="w-16 h-16 rounded-full" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="user photo" />
+                </button>
+
+                {isDropdownOpen && (
+                    <div id="dropdownAvatar" className="dropdown-content absolute right-0 mt-2 rounded-lg shadow w-44">
+                        <div className="px-4 py-2 text-sm font-normal">
+                        <div>Bonnie Green</div>
+                        <div className="truncate pt-1">name@flowbite.com</div>
+                        </div>
+                        <ul className="py-1 text-sm" aria-labelledby="dropdownUserAvatarButton">
+                        <li className='hover:bg-base-200'>
+                            <a href="/ProfileOverview" className="block px-4 py-1 font-medium">Profile</a>
+                        </li>
+                        </ul>
+                        <div className="py-1">
+                        <a href="" className="block px-4 py-2 text-sm font-medium hover:bg-base-200">Log out</a>
+                        </div>
+                    </div>
+                )}
+            </div>
+
         </div>
     </div>
   )

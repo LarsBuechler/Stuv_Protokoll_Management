@@ -19,7 +19,7 @@ const Notifications = () => {
 
         <Navbar />
 
-        <div>
+        <div className='pt-20'>
             <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
             <div className="mx-4 min-h-screen max-w-screen-xl sm:mx-8 xl:mx-auto pb-5">
@@ -40,11 +40,9 @@ const Notifications = () => {
 
                 <div className="col-span-2 hidden sm:block">
                 <ul>
-                    <li className="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"><a href='/ProfileOverview/Accounts/'>Accounts</a></li>
-                    <li className="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"><a href='/ProfileOverview/Users/'>Users</a></li>
                     <li className="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"><a href='/ProfileOverview/Profile/'>Profile</a></li>
-                    <li className="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"><a href='/ProfileOverview/Teams/'>Teams</a></li>
                     <li className="mt-5 cursor-pointer border-l-2 border-l-blue-700 px-2 py-2 font-semibold text-blue-700 transition hover:border-l-blue-700 hover:text-blue-700"><a href='/ProfileOverview/Teams/'>Notifications</a></li>
+                    <li className="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"><a href='/ProfileOverview/Users/'>Users</a></li>
                 </ul>
                 </div>
 

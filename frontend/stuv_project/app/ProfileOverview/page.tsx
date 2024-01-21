@@ -10,7 +10,7 @@ const Settings = () => {
 
         <Navbar />
 
-        <div>
+        <div className='pt-20'>
             <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
             <div className="mx-4 min-h-screen max-w-screen-xl sm:mx-8 xl:mx-auto pb-5">
