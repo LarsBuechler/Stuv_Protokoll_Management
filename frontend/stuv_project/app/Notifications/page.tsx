@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
-import Footer from '../components/Footer/Footer'
-import Navbar from '../components/Navbar/Navbar'
-import Sidebar from '../components/Sidebar/Sidebar';
+import Footer from '../components/Layout/Footer/Footer'
+import Navbar from '../components/Layout/Navbar/Navbar'
+import Sidebar from '../components/Layout/Sidebar/Sidebar';
 
 
 
@@ -30,7 +30,7 @@ const Notifications = () => {
 
         <div className='w-4/5 pr-4 pl-4 pb-10 z-0 flex items-center justify-center'>
 
-            <div className="grid pt-3 w-[80%]">
+            <div className="grid w-[80%]">
 
                 <div className="overflow-hidden rounded-xl bg-gray-50 px-8 shadow">
                 <div className="border-b pt-4 pb-8">
@@ -38,11 +38,11 @@ const Notifications = () => {
                     <p className="font- text-slate-600">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
                 </div>
                 <div className="grid border-b py-6">
-                    <div className="">
+                    <div className="grid-col">
                     <h2 className="text-lg font-semibold leading-4 text-slate-700">Comments</h2>
                     <p className="pt-4 text-slate-600">Lorem ipsum dolor, Alias eligendi laboriosam magni reiciendis neque.</p>
                     </div>
-                    <div className="mt-4 flex items-center sm:justify-end">
+                    <div className="mt-4 grid-col items-center">
                     <div className="flex flex-col gap-3">
                         <label htmlFor="push" className="relative inline-flex cursor-pointer items-center">
                         <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} value="" id="push" className="peer sr-only" />

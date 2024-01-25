@@ -1,7 +1,7 @@
 import React from 'react'
-import Navbar from '../components/Navbar/Navbar'
-import Footer from '../components/Footer/Footer'
-import Sidebar from '../components/Sidebar/Sidebar'
+import Navbar from '../components/Layout/Navbar/Navbar'
+import Footer from '../components/Layout/Footer/Footer'
+import Sidebar from '../components/Layout/Sidebar/Sidebar'
 
 interface Comment{
   postId: number,

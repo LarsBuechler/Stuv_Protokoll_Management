@@ -1,7 +1,7 @@
 import React from 'react'
-import Footer from '../components/Footer/Footer'
-import Navbar from '../components/Navbar/Navbar'
-import Sidebar from '../components/Sidebar/Sidebar'
+import Footer from '../components/Layout/Footer/Footer'
+import Navbar from '../components/Layout/Navbar/Navbar'
+import Sidebar from '../components/Layout/Sidebar/Sidebar'
 
 
 const Profile = () => {
