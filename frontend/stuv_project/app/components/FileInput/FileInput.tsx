@@ -8,13 +8,13 @@ const FileInput = () => {
     const handleUpload = () => {
         setUploadComplete(false);
         setIsUploading(true);
-        setTimeout(() => { setIsUploading(false), setUploadComplete(true); }, 5000);
+        setTimeout(() => { setIsUploading(false), setUploadComplete(true); }, 2000);
     };
   return (
     <div>
-        <div className='flex items-center justify-center pt-20 pb-10'>
-            <input type="file" className="file-input file-input-bordered w-full max-w-[40%]" />
-            <button className='btn btn-wide hover:bg-primary ml-5' onClick={handleUpload}>Upload</button>
+        <div className='flex items-center justify-center pb-10'>
+            <input type="file" className="file-input file-input-bordered w-full max-w-[60%] text-base-content" />
+            <button className='btn btn-wide hover:bg-base-300 active:bg-neutral-content  ml-5' onClick={handleUpload}>Upload</button>
         </div>
 
         {isUploading && (
