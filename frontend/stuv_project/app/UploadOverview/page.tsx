@@ -1,35 +1,20 @@
 import React from 'react'
-import Navbar from '../components/Layout/Navbar/Navbar'
-import Sidebar from '../components/Layout/Sidebar/Sidebar'
-import Footer from '../components/Layout/Footer/Footer'
 import FileInput from '../components/FileInput/FileInput'
+import Layout from '../components/Layout/layout'
 
 
 const UploadOverview = () => {
   return (
-    <div>
-      <div className='flex flex-wrap'>
+  <div>
 
-        <div className='relative z-50'>
-          <Navbar />
-        </div>
+    <Layout>
 
-        <div className='w-1/5 pr-4 overflow-y-auto'> 
-          <Sidebar />
-        </div>
-        
-        <div className='w-4/5 pr-4 pl-4 py-20 overflow-y-auto relative z-0'>
-          <div className='text-xl font-bold text-center text-neutral pb-10'>Upload neuer Dateien</div>
-          <FileInput />
-        </div>
+      <div className='text-xl font-bold text-center text-base-content pt-10 pb-20'>Upload neuer Dateien</div>
+      <FileInput />
+      
+    </Layout>
 
-      </div>
-
-      <div className='pt-20'>
-        <Footer />
-      </div>
-
-    </div>
+  </div>
   )
 }
 
