@@ -1,26 +1,57 @@
-import React from 'react'
+'use client';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Chatbot = () => {
+  const [messages, setMessages] = useState([
+    "It's over Anakin, I have the high ground.",
+    "You underestimate my power!"
+  ]);
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputKeyPress = (event: { key: string; }) => {
+    if (event.key === 'Enter') {
+      setMessages([...messages, inputValue]);
+      setInputValue('');
+    }
+  };
+
+  const ref = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+      if (messages.length) {
+        ref.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "end",
+        });
+      }
+    }, [messages.length]);
+
   return (
-<div className='pb-8'> 
-<div className='grid grid-flow-rows gap-y-10 rounded p-10 shadow shadow-blue-gray-900/5 ml-12 mr-16'>
-
-    <div className='text-center ml-20 mr-24'>
-        <input type="text" placeholder="Wie kann ich dir helfen?" className="input input-bordered input-secondary w-[100%]" />
-    </div>
-
-    <div className='mx-40'>
-        <div className="chat chat-start">
-            <div className="chat-bubble">It's over Anakin, <br/>I have the high ground.</div>
+    <div className='pb-8 ml-12 mr-16 rounded-lg shadow shadow-base-300'>
+      <div className='grid grid-flow-rows gap-y-10 p-6 h-100'>
+        <div className='h-80 overflow-y-auto'>
+          {messages.map((message, index) => (
+            <div key={index} className={`chat ${index % 2 === 0 ? 'chat-start' : 'chat-end'} mx-4`}>
+              <div className='chat-bubble'>{message}</div>
+            </div>
+          ))}
+          <div ref={ref} />
         </div>
-        <div className="chat chat-end">
-            <div className="chat-bubble">You underestimate my power!</div>
+
+        <div className='text-center ml-12 mr-16'>
+          <input
+            type='text'
+            placeholder='Wie kann ich dir helfen?'
+            className='input input-bordered input-secondary w-[100%]'
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={handleInputKeyPress}
+          />
         </div>
+      </div>
     </div>
+  );
+};
 
-</div>
-</div>
-  )
-}
+export default Chatbot;
 
-export default Chatbot
+    

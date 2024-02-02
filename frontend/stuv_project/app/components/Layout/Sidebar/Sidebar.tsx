@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const Sidebar = () => {
   return (
-    <div className="relative flex flex-col bg-clip-border rounded-xl bg-base-100 text-base-content max-h-[100%] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
+    <div className="relative flex flex-col bg-clip-border rounded-xl bg-base-100 text-base-content max-h-[100%] w-full max-w-[20rem] p-4 shadow-xl shadow-base-300">
         <nav className="flex flex-col gap-1 min-w-[240px] p-2 font-sans text-base font-normal text-base-content">
             
             <div className="mb-2 pt-2">
@@ -71,7 +71,7 @@ const Sidebar = () => {
             </Link>
 
 
-            <div className="border-b pt-1"></div>
+            <div className="border-b border-base-content pt-1"></div>
             <div className="mb-2 pt-2">
                 <h5 className="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-base-content">Settings</h5>
             </div>
