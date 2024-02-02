@@ -27,10 +27,10 @@ const Chatbot = () => {
 
   return (
     <div className='pb-8 ml-12 mr-16 rounded-lg shadow shadow-base-300'>
-      <div className='grid grid-flow-rows gap-y-10 p-6 h-100'>
+      <div className='grid grid-flow-rows gap-y-4 p-4 h-100'>
         <div className='h-80 overflow-y-auto'>
           {messages.map((message, index) => (
-            <div key={index} className={`chat ${index % 2 === 0 ? 'chat-start' : 'chat-end'} mx-4`}>
+            <div key={index} className={`chat ${index % 2 === 0 ? 'chat-start' : 'chat-end'} mx-4 mb-4`}>
               <div className='chat-bubble'>{message}</div>
             </div>
           ))}
