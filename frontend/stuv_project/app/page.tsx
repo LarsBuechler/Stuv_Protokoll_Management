@@ -11,6 +11,7 @@ export default function Home() {
         <div>  
           <Layout>
           <Chatbot />
+          <div className="py-2"></div>
           <Output />
           </Layout>
         </div>

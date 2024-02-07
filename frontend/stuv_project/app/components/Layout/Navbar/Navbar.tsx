@@ -104,7 +104,7 @@ const Navbar = () => {
                                 </ul>
                             </div>
                             <div className="pb-2">
-                                <a href="" className="block px-4 py-2 text-sm font-medium hover:text-info-content">Log out</a>
+                                <Link href="./" className="block px-4 py-2 text-sm font-medium hover:text-info-content">Log out</Link>
                             </div>
                         </div>
                     )}
