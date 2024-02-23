@@ -11,6 +11,6 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 #COPY ./src ./src
 COPY ./app ./app
 
-# start the server
+# start the server^
 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80", "--reload"]
