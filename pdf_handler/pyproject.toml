@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "pdf_reader"
+name = "pdf_handler"
 version = "0.0.1"
 authors = [
   { name="Dominik Petermann"},
@@ -18,5 +18,5 @@ dependencies = [
     "pydantic==2.5.3"
 ]
 
-[tool.pytest.ini_options]
-pythonpath = "src"
+#[tool.pytest.ini_options]
+#pythonpath = "src"

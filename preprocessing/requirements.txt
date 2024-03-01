@@ -1,4 +1,0 @@
-pypdf2==3.0.1
-pycryptodome==3.20.0
-pdfminer.six==20231228
-pydantic==2.5.3
