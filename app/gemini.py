@@ -134,9 +134,15 @@ def train_pipeline(pdf_path: str) -> (list, float):
   protocol_info = ExtractProtocolInfo()(pdf_path)
   training_data = GenerateTrainingData()(protocol_info)
 
-  # ... previous steps for data splitting, training, and evaluation ...
+  preprocessed_text = PdfReader()()  # Read PDF text
+  preprocessed_text = PreprocessData()(preprocessed_text)  # Preprocess text
+
+  data = SplitData()(preprocessed_text)  # Split data into features and target
+  model = TrainModel()(data)  # Train the model
+  accuracy = EvaluateModel()(data, model)  # Evaluate the model
 
   document_clusters = ClusterDocuments()(preprocessed_text)
   return document_clusters, accuracy
 
 # ... code for running the pipeline with ZenML ...
+
