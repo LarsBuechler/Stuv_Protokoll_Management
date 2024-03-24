@@ -1,15 +1,11 @@
 from zenml.steps import BaseStep
 import re
-import lorem  # Assuming lorem for PDF content (replace with actual PDF reader)
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression  # Placeholder (replace with evaluation metric)
-from sklearn.metrics import accuracy_score  # Placeholder (replace with evaluation metric)
 import spacy
-from mistralai import MistralAsyncClient, PromptTemplate  # Install mistralai library
+from mistralai import MistralAsyncClient, PromptTemplate
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
-# Load spaCy English model
-nlp = spacy.load("en_core_web_sm")
-
+# Load spaCy German model
+nlp = spacy.load("de_core_news_sm")
 
 def preprocess_pdf(pdf_text):
   text = re.sub(r'[^\w\s]', '', pdf_text.lower())  # Remove non-alphanumeric characters
@@ -19,13 +15,31 @@ def preprocess_pdf(pdf_text):
 
 
 class ExtractChatbotData(BaseStep):
-  """Extracts questions & answers from PDFs."""
+  """Extracts questions & answers from PDFs using spaCy."""
 
   def run(self, pdf_path: str) -> list:
-    # Replace with your information extraction logic (similar to ExtractProtocolInfo)
     chatbot_data = []
-    # ... (extract questions & answers from PDFs)
+    with open(pdf_path, 'rb') as pdf_file:
+      # ... (Extract text from PDF - replace with your PDF parsing logic)
+      text = preprocess_pdf(pdf_text)
+
+      for sentence in nlp(text).sents:
+        # Check for question words
+        if any(token.text.lower() in ["was", "wer", "warum", "wie"] for token in sentence):
+          question = sentence.text
+          answer = self.find_answer(sentence, text)  # Find answer within the text
+          chatbot_data.append({"question": question, "answer": answer})
+
     return chatbot_data
+
+  def find_answer(self, question_sentence, text):
+    # Implement logic to find the answer within the text based on the question
+    # This is a simplified example, replace with your approach (e.g., following sentence)
+    next_sentence = next(iter(nlp(text).sents), None)
+    if next_sentence:
+      return next_sentence.text
+    else:
+      return "Answer not found in following sentence"
 
 
 class PrepareTrainingData(BaseStep):
@@ -41,8 +55,8 @@ class PrepareTrainingData(BaseStep):
     return formatted_data
 
 
-class TrainMixtralModel(BaseStep):
-  """Trains a Mixtral chatbot model."""
+class FineTuneMixtralModel(BaseStep):
+  """Fine-tunes a Mixtral model using prepared data."""
 
   def run(self, data: list) -> object:
     # Connect to Mixtral API (replace with your API key)
@@ -51,27 +65,25 @@ class TrainMixtralModel(BaseStep):
     # Define prompt template for training (adjust as needed)
     prompt_template = PromptTemplate(template="{}")
 
-    # Train the Mixtral model asynchronously
-    future = client.llms.train(
-        model_name="mixtral/7B",  # Mixtral 7B model name
+    # Load pre-trained Mixtral model (replace with appropriate tokenizer for 7x8b)
+    model_name = "mixtral/7B"  # Adjust model name if needed
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+
+    # Fine-tune the model with prepared data
+    future = client.llms.finetune(
+        model_name=model_name,
         prompts=data,
         prompt_template=prompt_template,
+        tokenizer=tokenizer,
+        model=model,
         batch_size=8,
         epochs=3,
     )
 
-    # Retrieve trained model (replace with appropriate error handling)
-    model = future.result()
-    return model
-
-
-class EvaluateModel(BaseStep):
-  """Evaluates the trained model (placeholder)."""
-
-  # Replace with your evaluation logic for the chatbot model
-  def run(self, data: list, model: object) -> float:
-    # Placeholder accuracy score (replace with appropriate evaluation metric)
-    return accuracy_score(data, [1] * len(data))  # Dummy score
+    # Retrieve fine-tuned model (replace with appropriate error handling)
+    fine_tuned_model = future.result()
+    return fine_tuned_model
 
 
 from zenml import pipeline
@@ -79,13 +91,11 @@ from zenml import pipeline
 @pipeline
 def train_pipeline(pdf_path: str) -> object:
   """
-  Pipeline for training a Mixtral chatbot model with data extracted from PDFs.
+  Pipeline for fine-tuning a Mixtral model with question-answer data extracted from PDFs.
   """
   chatbot_data = ExtractChatbotData()(pdf_path)
   formatted_data = PrepareTrainingData()(chatbot_data)
-  model = TrainMixtralModel()(formatted_data)
-  _ = EvaluateModel()(formatted_data, model)  # Placeholder evaluation
-
+  model = FineTuneMixtralModel()(formatted_data)
   return model
 
 # ... code for running the pipeline with ZenML ...
