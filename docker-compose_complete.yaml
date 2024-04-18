@@ -1,0 +1,153 @@
+services:
+#   app:
+#     build: 
+#       context: .
+#       dockerfile: ./docker/api/Dockerfile
+#     container_name: python-server
+#     #command: uvicorn src.main:app --host 0.0.0.0 --port 80 --reload
+#     ports:
+#       - 8001:80
+#       #- 5678:5678
+#     volumes:
+#       - .:/code
+#     depends_on:
+#       - postgres
+#       - s3
+#       - mlflow
+#     environment:
+#       - AWS_ACCESS_KEY_ID=${MINIO_ACCESS_KEY}
+#       - AWS_SECRET_ACCESS_KEY=${MINIO_SECRET_ACCESS_KEY}
+#       - MLFLOW_S3_ENDPOINT_URL=http://s3:${MINIO_PORT}
+#     networks:
+#       - backend
+#   postgres:
+# #    restart: always
+#     image: postgres:11
+#     container_name: mlflow_db
+#     expose:
+#       - "${PG_PORT}"
+#     networks:
+#       - backend
+#     environment:
+#       - POSTGRES_USER=${PG_USER}
+#       - POSTGRES_PASSWORD=${PG_PASSWORD}
+#       - POSTGRES_DATABASE=${PG_DATABASE}
+#     volumes:
+#       - db_data:/var/lib/postgresql/data/
+#     healthcheck:
+#       test: ["CMD", "pg_isready", "-p", "${PG_PORT}", "-U", "${PG_USER}"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 3
+
+#   pgadmin:
+#     image: dpage/pgadmin4
+#     container_name: pgadmin4_container
+# #    restart: always
+#     environment:
+#       PGADMIN_DEFAULT_EMAIL: ${PG_ADMIN_USER} 
+#       PGADMIN_DEFAULT_PASSWORD: ${PG_ADMIN_PASSWORD}
+#     ports:
+#       - "80:80"
+#     networks:
+#       - backend
+#     volumes:
+#       - pgadmin-data:/var/lib/pgadmin
+  
+#   s3:
+#     #restart: always
+#     image: minio/minio
+#     container_name: mlflow_minio
+#     volumes:
+#       - minio_data:/data
+#     ports:
+#       - "9000:9000"
+#       - "9090:9090"
+#     networks:
+#       - backend
+#     environment:
+# #      MINIO_ROOT_USER: admin
+# #      MINIO_ROOT_PASSWORD: password
+#       - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+#       - MINIO_SECRET_KEY=${MINIO_SECRET_ACCESS_KEY}
+#     command: server --control-address ":9090" /data
+#     healthcheck:
+#       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+#       interval: 30s
+#       timeout: 20s
+#       retries: 3
+  
+#   create_buckets:
+#     image: minio/mc
+#     container_name: mlflow_create_buckets
+#     depends_on:
+#       - s3
+#     networks:
+#       - backend
+#     entrypoint: >
+#       /bin/sh -c '
+#       sleep 5;
+#       /usr/bin/mc config host add s3 http://s3:${MINIO_PORT} ${MINIO_ACCESS_KEY} ${MINIO_SECRET_ACCESS_KEY} --api S3v4;
+#       [[ ! -z "`/usr/bin/mc ls s3 | grep challenge`" ]] || /usr/bin/mc mb s3/${MLFLOW_BUCKET_NAME};
+#       /usr/bin/mc policy download s3/${MLFLOW_BUCKET_NAME};
+#       [[ ! -z "`/usr/bin/mc ls s3 | grep challenge`" ]] || /usr/bin/mc mb s3/${DATA_REPO_BUCKET_NAME};
+#       /usr/bin/mc policy download s3/${DATA_REPO_BUCKET_NAME};
+#       exit 0;
+#       '
+
+#   mlflow:
+# #    restart: always
+#     build:  
+#       context: .
+#       dockerfile: ./docker/mlflow/Dockerfile
+#     image: mlflow_server
+#     container_name: mlflow_server
+#     ports:
+#       - "${MLFLOW_PORT}:5000"
+#     networks:
+#       - backend
+#     environment:
+#       - AWS_ACCESS_KEY_ID=${MINIO_ACCESS_KEY}
+#       - AWS_SECRET_ACCESS_KEY=${MINIO_SECRET_ACCESS_KEY}
+#       - MLFLOW_S3_ENDPOINT_URL=http://s3:${MINIO_PORT}
+#     command: >
+#       mlflow server 
+#       --backend-store-uri postgresql://${PG_USER}:${PG_PASSWORD}@db:${PG_PORT}/${PG_DATABASE}
+#       --host 0.0.0.0
+#       --default-artifact-root s3://mlflow/
+#     healthcheck:
+#       test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+#       interval: 30s
+#       timeout: 10s
+#       retries: 3
+
+  # mysql:
+  #   image: mysql:8.0
+  #   ports:
+  #     - 3306:3306
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=password
+  # zenml:
+  #   image: zenmldocker/zenml-server
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     - ZENML_STORE_URL=mysql://root:password@host.docker.internal/zenml
+  #     - ZENML_DEFAULT_USERNAME=admin
+  #     - ZENML_DEFAULT_PASSWORD=zenml
+  #   links:
+  #     - mysql
+  #   depends_on:
+  #     - mysql
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  #   restart: on-failure
+
+# volumes:
+#   db_data:
+#   minio_data:
+#   pgadmin-data:
+
+# networks:
+#   backend:
+#     driver: bridge

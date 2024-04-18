@@ -1,0 +1,6 @@
+docker run -it -d -p 8080:8080 --name zenml `
+    --add-host host.docker.internal:host-gateway `
+    --env ZENML_STORE_URL=mysql://root:password@host.docker.internal/zenml `
+    --env ZENML_DEFAULT_USERNAME=admin `
+    --env ZENML_DEFAULT_PASSWORD=zenml `
+    zenmldocker/zenml-server
