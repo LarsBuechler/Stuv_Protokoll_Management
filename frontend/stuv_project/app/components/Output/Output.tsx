@@ -23,7 +23,7 @@ const Output = () => {
             <div className="timeline-end mb-10">
             <time className="font-mono italic">1998</time>
             <div className="text-lg font-black">iMac</div>
-            iMac is a family of all-in-one Mac desktop computers designed and built by Apple Inc. It has been the primary part of Apple's consumer desktop offerings since its debut in August 1998, and has evolved through seven distinct forms
+            iMac is a family of all-in-one Mac desktop computers designed and built by Apple Inc. It has been the primary part of Apples consumer desktop offerings since its debut in August 1998, and has evolved through seven distinct forms
             </div>
             <hr />
         </li>
@@ -35,7 +35,7 @@ const Output = () => {
             <div className="timeline-start md:text-end mb-10">
             <time className="font-mono italic">2001</time>
             <div className="text-lg font-black">iPod</div>
-            The iPod is a discontinued series of portable media players and multi-purpose mobile devices designed and marketed by Apple Inc. The first version was released on October 23, 2001, about 8+1⁄2 months after the Macintosh version of iTunes was released. Apple sold an estimated 450 million iPod products as of 2022. Apple discontinued the iPod product line on May 10, 2022. At over 20 years, the iPod brand is the oldest to be discontinued by Apple
+            The iPod is a discontinued series of portable media players and multi-purpose mobile devices designed and marketed by Apple Inc. The first version was released on October 23, 2001, about 8.5 months after the Macintosh version of iTunes was released. Apple sold an estimated 450 million iPod products as of 2022. Apple discontinued the iPod product line on May 10, 2022. At over 20 years, the iPod brand is the oldest to be discontinued by Apple
             </div>
             <hr />
         </li>

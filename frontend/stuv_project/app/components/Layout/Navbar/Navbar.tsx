@@ -1,6 +1,7 @@
 'use client';
 import React from 'react'
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 
 
@@ -87,7 +88,7 @@ const Navbar = () => {
 
                 <div className='col-start-5 col-end-5'>
                     <button id="dropdownUserAvatarButton" onClick={toggleDropdown} className="hover:scale-105 bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" type="button">
-                        <img className="w-16 h-16 rounded-full" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" alt="user photo" />
+                        <Image src="/images/Unknown.jpeg" alt="Beschreibung" width={100} height={50} />
                     </button>
 
                     {isDropdownOpen && (
