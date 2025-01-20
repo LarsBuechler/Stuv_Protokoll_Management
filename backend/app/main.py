@@ -3,7 +3,13 @@ from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
 import os
 
-from . import crud, models, schemas, pdf_utils
+from .schemas import schemas
+
+from .models import models
+
+from .crud import crud
+
+from .utils import pdf_utils
 from .database import engine, SessionLocal, get_db
 
 models.Base.metadata.create_all(bind=engine)

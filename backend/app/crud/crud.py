@@ -1,5 +1,7 @@
 from sqlalchemy.orm import Session
-from . import models, schemas
+
+from ..models import models
+from ..schemas import schemas
 
 def create_document(db: Session, document: schemas.Document):
     db_document = models.Document(name=document.name, content=document.content)
