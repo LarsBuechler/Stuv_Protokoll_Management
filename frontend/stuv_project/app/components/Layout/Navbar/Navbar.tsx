@@ -88,7 +88,7 @@ const Navbar = () => {
 
                 <div className='col-start-5 col-end-5'>
                     <button id="dropdownUserAvatarButton" onClick={toggleDropdown} className="hover:scale-105 bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" type="button">
-                        <Image src="/images/Unknown.jpeg" alt="Beschreibung" width={100} height={50} />
+                        <Image src="/images/Profile_Pic.png" alt="Beschreibung" width={75} height={75} />
                     </button>
 
                     {isDropdownOpen && (
